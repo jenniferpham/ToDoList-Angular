@@ -6,60 +6,62 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>To Do List in Angular</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
+
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
 
   <!--TODO LIST-->
-  <div class="col-md-12" ng-controller="TodoCtrl">
-      <div class="container">
+  <div class="col-md-12" ng-controller="TodoCtrl" class="container">
+          <h1>What do I need to do today?</h1>
           {{message}}<p></p>
-          <p></p>
-
-
           <div ng-repeat="item in todolist">
-          <span ng-click="edit=!edit" ng-hide="edit">
-              {{item}}
-          </span>
-              <!--<div class="btn-group btn btn-info btn-lg">-->
-              <!--<button class="btn">Edit</button>-->
-              <!--<button class="btn dropdown-toggle" data-toggle="dropdown">-->
-              <!--<span class="caret"></span>-->
-              <!--</button>-->
-              <!--<ul class="dropdown-menu">-->
-              <!--<li ng-click="edit">Edit</li>-->
-              <!--<li ng-click="deleteTodo(item)">Delete</li>-->
-              <!--&lt;!&ndash; dropdown menu links &ndash;&gt;-->
-              <!--</ul>-->
-              <!--</div>-->
+              <div class="row">
+                  <div class="col-sm-6">
+                      <span ng-click="edit=!edit" ng-hide="edit">
+                          {{item}}
+                      </span>
+                      <input type="text" ng-model="item" ng-show="edit" size="60">
+                  </div>
+                  <div class="col-sm-6">
+                      <button ng-show="edit" ng-click="edit=false" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-remove"></span>Done with my edits</button>
+                      <button class="btn btn-sm btn-warning" ng-click="edit=true" ng-hide="edit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                      <button class="btn btn-sm btn-danger" ng-click="deleteTodo(item)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                  </div>
+                  <br>
+             </div>
 
-              <div ng-show="edit">
-                  <input type="text" ng-model="item" ng-show="edit">
-                  <button type="submit" ng-click="edit=false">Done with my edits</button>
-              </div>
-              <button ng-click="deleteTodo(item)">Delete</button>
-              <br>
 
           </div>
-          <input type="text" ng-model="listItem" placeholder="what i need to do"><button type="submit" ng-click="addTodo()">add</button>
-
+          <br><br>
+      <div class="row">
+          <div class="col-sm-6">
+              <input type="text" size="60" ng-model="listItem" placeholder="what i need to do">
+          </div>
+          <div class="col-sm-6">
+              <button type="submit" value="submit" class="btn btn-success" ng-click="addTodo()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+          </div>
       </div>
+
   </div>
 <!--END TO DO LIST-->
 
